@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  background-color: hsl(216, 56%, 98%);
+}
+
+
+.scroll-bar::-webkit-scrollbar{
+  display: none;
+}
