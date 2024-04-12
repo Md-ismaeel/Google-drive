@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState, useEffect } from 'react'
 import logo from "../assets/drive_logo.png"
 import { IoMdSearch } from "react-icons/io";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { MdOutlineOfflinePin } from "react-icons/md";
 import { MdOutlineContactSupport } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
@@ -10,11 +10,13 @@ import { MdAccountCircle } from "react-icons/md";
 import { UserContext } from '../Context/Context';
 import { IoMdLogOut } from "react-icons/io";
 
+
 const Navbar = () => {
 
     const { fileView, setFileView, user, setUser, showProfile, setShowProfile } = useContext(UserContext)
     const searchRef = useRef(null);
     const profileRef = useRef(null)
+    const navigator = useNavigate()
 
 
     const HandleFilter = () => {
@@ -28,6 +30,7 @@ const Navbar = () => {
 
     const handleLogOut = () => {
         setUser(user => !user)
+        navigator('/')
     }
 
     const handleOpen = () => {
