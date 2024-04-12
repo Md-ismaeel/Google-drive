@@ -25,8 +25,8 @@ const routes = createBrowserRouter([
       { path: '/shareWidthMe', element: <ShareWidthMe /> },
       { path: '/recent', element: <Recent /> },
       { path: '/spam', element: <Spam /> },
-      { path: '/Bin', element: <Bin /> },
-      { path: '/storage', element: <Bin /> },
+      { path: '/bin', element: <Bin /> },
+      { path: '/storage', element: <FileStorage /> },
     ]
   },
 ])

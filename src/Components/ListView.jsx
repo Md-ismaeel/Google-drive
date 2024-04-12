@@ -2,10 +2,10 @@ import React, { useContext, useState } from 'react'
 import { MdInsertDriveFile, MdAccountCircle } from "react-icons/md";
 import { MdMoreVert } from "react-icons/md";
 import { UserContext } from '../Context/Context';
+import { db } from '../FireBaseConfig/Firebase';
 
 
 export const ListView = ({ item }) => {
-    console.log(item);
 
     const { click, setClick } = useContext(UserContext)
 
@@ -19,9 +19,23 @@ export const ListView = ({ item }) => {
         return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
     };
 
-    const handleDelete = () => {
-        console.log('working');
-        setClick(false)
+    const handleOpen = (id) => {
+        setClick(id)
+    }
+
+    const handleDelete = (id) => {
+
+        // const filteredData = fileView.filter((e) => (e.id !== id))
+        // setFileView(filteredData)
+
+        db.collection('myFiles').doc(id).delete()
+            .then(() => {
+                console.log("Document successfully deleted!");
+                setClick(false);
+            })
+            .catch(error => {
+                console.error("Error removing document: ", error);
+            });
     }
 
     return (
@@ -31,9 +45,13 @@ export const ListView = ({ item }) => {
             <p className='w-[20%] flex justify-center items-center gap-2'>me <MdAccountCircle className='text-lg text-gray-400' /></p>
             <p className='w-[25%] text-center'>{new Date(item.data.timestamp?.seconds * 1000).toUTCString()}</p>
             <p className='w-[15%] text-center'>{convertingToBytes(item.data?.size)}</p>
-            <p onClick={handleDelete} className='w-[5%] text-center relative cursor-pointer'><MdMoreVert />
-                {click ? (
-                    <span className='absolute h-[100px] w-[200px] bg-gray-500'>Delete</span>
+
+            <p onClick={() => handleOpen(item.id)} className='w-[5%] text-center relative cursor-pointer'><MdMoreVert />
+                {click === item.id ? (
+
+                    <div className='absolute flex justify-center items-center h-[50px] w-[100px] bg-black z-10 top-4 right-10'>
+                        <button onClick={() => handleDelete(item.id)} className='w-[100%] h-[100%] z-20 text-white text-base'>Delete</button>
+                    </div>
                 ) : ''}
             </p>
 

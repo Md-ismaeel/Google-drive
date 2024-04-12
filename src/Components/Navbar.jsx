@@ -8,13 +8,12 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { IoApps } from "react-icons/io5";
 import { MdAccountCircle } from "react-icons/md";
 import { UserContext } from '../Context/Context';
-import { useNavigate } from 'react-router-dom'
+import { IoMdLogOut } from "react-icons/io";
 
 const Navbar = () => {
 
     const { fileView, setFileView, user, setUser, showProfile, setShowProfile } = useContext(UserContext)
     const searchRef = useRef(null);
-    const navigator = useNavigate()
     const profileRef = useRef(null)
 
 
@@ -91,7 +90,7 @@ const Navbar = () => {
                 {showProfile ? (
                     <div ref={profileRef} className='absolute w-[150px] flex flex-col justify-center items-center top-14 right-10 text-base bg-white drop-shadow-2xl z-10 py-2  rounded-lg'>
                         <p className='w-full text-center py-1'>My Acc</p>
-                        <p onClick={handleLogOut} className='w-full text-center cursor-pointer py-2'>LogOut</p>
+                        <p onClick={handleLogOut} className='w-full flex justify-center items-center gap-2 text-center cursor-pointer py-2'>LogOut<IoMdLogOut className='text-red-500' /></p>
                     </div>)
                     : ''}
             </ul>

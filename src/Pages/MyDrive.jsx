@@ -3,6 +3,7 @@ import { ListView } from '../Components/ListView'
 import { UserContext } from '../Context/Context'
 import { FaArrowDown } from "react-icons/fa";
 import { MdMoreVert } from "react-icons/md";
+import myDrive from "../assets/empty_state_my_drive_v2.svg"
 
 export const MyDrive = () => {
     const { fileView } = useContext(UserContext)
@@ -17,21 +18,33 @@ export const MyDrive = () => {
                 </span>
             </div>
 
-            <div className='w-[100%] flex flex-col justify-start items-center overflow-y-auto'>
-                <div className='w-full flex justify-start items-center border-b px-2 py-2'>
-                    <p className='font-semibold w-[35%] flex justify-start items-center gap-1'>Name<FaArrowDown /></p>
-                    <p className='font-semibold w-[20%] text-center'>Owner</p>
-                    <p className='font-semibold w-[25%] text-center'>Last Modified</p>
-                    <p className='font-semibold w-[15%] text-center'>File Size</p>
-                    <p className='font-semibold w-[5%] text-center'><MdMoreVert /></p>
-                </div>
+            {fileView.length > 0 ? (
+                <>
+                    <div className='w-[100%] flex flex-col justify-start items-center overflow-y-auto'>
+                        <div className='w-full flex justify-start items-center border-b px-2 py-2'>
+                            <p className='font-semibold w-[35%] flex justify-start items-center gap-1'>Name<FaArrowDown /></p>
+                            <p className='font-semibold w-[20%] text-center'>Owner</p>
+                            <p className='font-semibold w-[25%] text-center'>Last Modified</p>
+                            <p className='font-semibold w-[15%] text-center'>File Size</p>
+                            <p className='font-semibold w-[5%] text-center'><MdMoreVert /></p>
+                        </div>
 
-                <div className='scroll-bar w-full h-[200px] flex flex-col justify-start items-start overflow-y-scroll overflow-x-hidden'>
-                    {fileView && fileView.map((item, i) => (
-                        <ListView key={i} item={item} />
-                    ))}
+                        <div className='scroll-bar w-full h-[200px] flex flex-col justify-start items-start overflow-y-scroll overflow-x-hidden'>
+                            {fileView && fileView.map((item, i) => (
+                                <ListView key={i} item={item} />
+                            ))}
+                        </div>
+                    </div>
+                </>) : (
+
+                <div className='w-full h-[100%] flex flex-col justify-center items-center gap-2'>
+                    <img src={myDrive} height={"100px"} width={'30%'} />
+                    <p className='text-2xl'>A place for all of your files</p>
+                    <p>Drag your files and folders here or use the 'New' button to upload</p>
                 </div>
-            </div>
+            )}
+
+
         </div>
     )
 }

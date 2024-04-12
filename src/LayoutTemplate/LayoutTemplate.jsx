@@ -34,7 +34,7 @@ const LayoutTemplate = () => {
     }, [])
 
 
-    console.log(user);
+    // console.log(user);
     return (
         <>
             {user ? (
@@ -53,7 +53,6 @@ const LayoutTemplate = () => {
             ) : (
                 <div className='w-full min-h-screen flex flex-col justify-center items-center bg-slate-400 gap-4'>
                     <img src={'https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Drive_logo_%282014-2020%29.svg'} height={'300px'} width={'400px'} className='' />
-
                     <button onClick={SignIn} className='w-[400px] h-[50px] bg-blue-300 text-white text-xl rounded-md'>Login to Google Drive </button>
                 </div>
             )}
@@ -61,4 +60,4 @@ const LayoutTemplate = () => {
     )
 }
 
-export default LayoutTemplate
+export default LayoutTemplate;
