@@ -2,16 +2,16 @@
 import firebase from 'firebase'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAWJHju_wPG7fzfouTDpiATDGpCUSiQR8Q",
-    authDomain: "drive-react-f5450.firebaseapp.com",
-    projectId: "drive-react-f5450",
-    storageBucket: "drive-react-f5450.appspot.com",
-    messagingSenderId: "400960856101",
-    appId: "1:400960856101:web:95ca0fcee3d7cb0c65dfcc"
+    apiKey: "AIzaSyCSQJixJu8MMg2linzJOcpcFpIpdR6UXNM",
+    authDomain: "drive-react-4255c.firebaseapp.com",
+    projectId: "drive-react-4255c",
+    storageBucket: "drive-react-4255c.appspot.com",
+    messagingSenderId: "926952289144",
+    appId: "1:926952289144:web:1e64c8ddb69a4ea375ce8d",
+    measurementId: "G-WW4JTKZLJ6"
 };
 
-// "firebase": "^8.10.1",
-// "firebase-tools": "^13.7.1",
+
 
 const firebaseApp = firebase.initializeApp(firebaseConfig)
 

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { UserContext } from '../Context/Context';
 import { FaPlus } from "react-icons/fa6";
-import firebase from 'firebase';
+import firebase from 'firebase'
 import { db, storage } from '../FireBaseConfig/Firebase';
 
 
@@ -61,17 +61,16 @@ export const NewFiles = () => {
             })
 
             storage.ref('files').child(file.name).getMetadata().then(meta => {
-                // console.log(meta.size)
+                console.log(meta.size)
             })
 
         })
     }
 
-
     return (
         <div className='w-full mt-2 px-2'>
             {open ?
-                <div ref={sidebarRef} onClose={handleClose} className='side-bar flex flex-col justify-center items-center gap-4 absolute min-h-[100px] w-[400px] bg-white drop-shadow-2xl py-4 border-2 top-52 left-[500px] z-30'>
+                <div ref={sidebarRef} className='side-bar flex flex-col justify-center items-center gap-4 absolute min-h-[100px] w-[400px] bg-white drop-shadow-2xl py-4 border-2 top-52 left-[500px] z-30'>
                     <h2 className='w-full flex justify-center items-center text-lg border-b-2'>Select any files from your computer</h2>
 
                     {!uploading ? (
