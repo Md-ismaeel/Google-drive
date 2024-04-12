@@ -49,7 +49,7 @@ export const ListView = ({ item }) => {
             <p onClick={() => handleOpen(item.id)} className='w-[5%] text-center relative cursor-pointer'><MdMoreVert />
                 {click === item.id ? (
 
-                    <div className='absolute flex justify-center items-center h-[50px] w-[100px] bg-black z-10 top-4 right-10'>
+                    <div className='absolute flex justify-center items-center h-[40px] w-[100px] rounded-md bg-black z-10 top-4 right-10'>
                         <button onClick={() => handleDelete(item.id)} className='w-[100%] h-[100%] z-20 text-white text-base'>Delete</button>
                     </div>
                 ) : ''}
