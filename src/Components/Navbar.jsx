@@ -54,7 +54,7 @@ const Navbar = () => {
     return (
         <div className='w-full h-[70px] px-6 flex justify-between items-center'>
 
-            <NavLink to={'/home'} className='w-[20%]text-xl flex justify-center items-center gap-3'>
+            <NavLink to={'/'} className='w-[20%]text-xl flex justify-center items-center gap-3'>
                 <img src={logo} height={'40px'} width={'45px'} />
                 <p className='opacity-70 hover:underline text-lg'>Drive</p>
             </NavLink>
