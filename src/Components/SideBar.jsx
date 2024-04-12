@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom';
-import { UserContext } from '../Context/Context';
 import { NewFiles } from './NewFiles';
 
 export const SideBar = () => {
@@ -18,7 +17,7 @@ export const SideBar = () => {
 
             <div className='w-full flex flex-col gap-2'>
 
-                <NavLink to={'/home'} className={`${isActive === "/home" ? 'bg-blue-100' : 'hover:bg-slate-200'} flex justify-start items-center gap-4 cursor-pointer px-4 py-1 rounded-full`}>
+                <NavLink to={'/'} className={`${isActive === "/" ? 'bg-blue-100' : 'hover:bg-slate-200'} flex justify-start items-center gap-4 cursor-pointer px-4 py-1 rounded-full`}>
                     <svg className="c-qd  text-sm" height="24" width="24" viewBox="0 0 24 24" fill="#000000" focusable="false"><g><path d="M0,0h24v24H0V0z" fill="none"></path></g><g><polygon points="12,3 4,9 4,21 10,21 10,14 14,14 14,21 20,21 20,9"></polygon></g></svg>
                     <span className='flex text-sm opacity-80'>Home</span>
                 </NavLink>
@@ -69,8 +68,8 @@ export const SideBar = () => {
                 </NavLink>
 
                 <div className='w-full px-6'>
-                    <p className='w-full h-1 bg-blue-400 rounded-full mb-1'></p>
-                    <p className=' opacity-80 text-sm'>4.4 GB of 15GB used</p>
+                    <p className='w-full h-1 bg-gradient-to-r from-blue-600 to-white rounded-full mb-1'></p>
+                    <p className=' opacity-80 text-sm'>7.4 GB of 15GB used</p>
                 </div>
 
             </div>

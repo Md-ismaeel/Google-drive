@@ -27,7 +27,6 @@ const Navbar = () => {
     }
 
     const handleLogOut = () => {
-        // navigator('/')
         setUser(user => !user)
     }
 
@@ -89,7 +88,7 @@ const Navbar = () => {
                 </span>
                 {showProfile ? (
                     <div ref={profileRef} className='absolute w-[150px] flex flex-col justify-center items-center top-14 right-10 text-base bg-white drop-shadow-2xl z-10 py-2  rounded-lg'>
-                        <p className='w-full text-center py-1'>My Acc</p>
+                        <p className='w-full text-center py-1 text-gray-500'>My Account</p>
                         <p onClick={handleLogOut} className='w-full flex justify-center items-center gap-2 text-center cursor-pointer py-2'>LogOut<IoMdLogOut className='text-red-500' /></p>
                     </div>)
                     : ''}

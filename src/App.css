@@ -11,6 +11,6 @@ body {
 }
 
 
-.scroll-bar::-webkit-scrollbar{
+.scroll-bar::-webkit-scrollbar {
   display: none;
 }

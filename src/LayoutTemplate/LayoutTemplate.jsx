@@ -3,13 +3,12 @@ import Navbar from '../Components/Navbar'
 import { SideBar } from '../Components/SideBar'
 import { Outlet } from 'react-router-dom'
 import { UserContext } from '../Context/Context'
-// import logo from "../assets/main-page-logo.svg"
 import { auth, provider, db } from '../FireBaseConfig/Firebase'
 import { Home } from '../Pages/Home'
 
 const LayoutTemplate = () => {
 
-    const { fileView, setFileView, user, setUser } = useContext(UserContext);
+    const { setFileView, user, setUser } = useContext(UserContext);
 
     const SignIn = () => {
         auth.signInWithPopup(provider).then(({ user }) => {
@@ -43,7 +42,6 @@ const LayoutTemplate = () => {
                     <div className='w-[100%] flex'>
                         <div className='w-[22%]'>
                             <SideBar />
-                            <Home />
                         </div>
                         <div className='w-[75%]'>
                             <Outlet />

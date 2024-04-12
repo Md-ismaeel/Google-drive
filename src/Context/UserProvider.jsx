@@ -25,7 +25,7 @@ export const UserProvider = (props) => {
                 setUser,
                 click,
                 setClick,
-                showProfile, 
+                showProfile,
                 setShowProfile
             }}
         >

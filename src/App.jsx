@@ -1,4 +1,3 @@
-import { Children, useState } from 'react'
 import './App.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import LayoutTemplate from './LayoutTemplate/LayoutTemplate'
@@ -18,7 +17,7 @@ const routes = createBrowserRouter([
     path: '/', element: <LayoutTemplate />,
 
     children: [
-      { path: '/home', element: <Home /> },
+      { path: '/', element: <Home /> },
       { path: '/my-drive', element: <MyDrive /> },
       { path: '/computer', element: <Computers /> },
       { path: '/starred', element: <Starred /> },
