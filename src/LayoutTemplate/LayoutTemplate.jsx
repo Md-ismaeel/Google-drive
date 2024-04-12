@@ -4,7 +4,7 @@ import { SideBar } from '../Components/SideBar'
 import { Outlet } from 'react-router-dom'
 import { UserContext } from '../Context/Context'
 import { auth, provider, db } from '../FireBaseConfig/Firebase'
-import { Home } from '../Pages/Home'
+
 
 const LayoutTemplate = () => {
 
