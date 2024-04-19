@@ -12,7 +12,7 @@ export const SideBar = () => {
 
 
     return (
-        <div className='w-full mt-2 px-6'>
+        <div className='w-full mt-2 px-6 min-h-screen mb-4'>
             <NewFiles />
 
             <div className='w-full flex flex-col gap-2'>

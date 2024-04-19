@@ -11,6 +11,7 @@ export const NewFiles = () => {
     const { open, setOpen, uploading, setUploading, file, setFile } = useContext(UserContext);
     const sidebarRef = useRef(null);
 
+
     const handleClose = () => {
         setOpen(false);
     };
@@ -26,14 +27,13 @@ export const NewFiles = () => {
             }
         };
         document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
+
+        return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
     const handleOnchange = (e) => {
         if (e.target.files[0]) {
-            console.log(e.target.files[0]);
+            // console.log(e.target.files[0]);
             setFile(e.target.files[0])
         }
     }
@@ -43,7 +43,7 @@ export const NewFiles = () => {
         setUploading(true)
 
         storage.ref(`files/${file.name}`).put(file).then(snapshot => {
-            console.log(snapshot)
+            // console.log(snapshot)
 
             storage.ref('files').child(file.name).getDownloadURL().then(url => {
                 //post image inside the db
@@ -54,6 +54,7 @@ export const NewFiles = () => {
                     fileUrl: url,
                     size: snapshot._delegate.bytesTransferred,
                 })
+                console.log(file);
 
                 setUploading(false)
                 setOpen(false)
@@ -71,7 +72,7 @@ export const NewFiles = () => {
         <div className='w-full mt-2 px-2'>
             {open ?
                 <div ref={sidebarRef} className='side-bar flex flex-col justify-center items-center gap-4 absolute min-h-[100px] w-[400px] bg-white drop-shadow-2xl py-4 border-2 top-52 left-[500px] z-30'>
-                    <h2 className='w-full flex justify-center items-center text-lg border-b-2'>Select any files from your computer</h2>
+                    <h2 className='w-full flex justify-center items-center text-lg border-b-2'>Select files from your Device</h2>
 
                     {!uploading ? (
                         <div className='w-full flex flex-col justify-center items-center'>

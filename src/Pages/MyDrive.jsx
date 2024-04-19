@@ -9,7 +9,7 @@ export const MyDrive = () => {
     const { fileView } = useContext(UserContext)
 
     return (
-        <div className='w-full min-h-[500px] overflow-y-auto px-10 py-4 mt-2 bg-white drop-shadow-xl rounded-2xl'>
+        <div className='w-full relative min-h-screen px-10 py-4 mt-2 bg-white drop-shadow-xl rounded-2xl mb-4'>
 
             <div className='w-full flex justify-between items-center mb-10'>
                 <h1 className='text-xl'>My Drive</h1>

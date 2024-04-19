@@ -6,7 +6,7 @@ import starred from "../assets/empty_state_starred_files_v3.svg"
 const Starred = () => {
     const { fileView } = useContext(UserContext)
     return (
-        <div className='w-full relative h-[500px] px-10 py-4 mt-2 bg-white drop-shadow-xl rounded-2xl'>
+        <div className='w-full relative min-h-screen px-10 py-4 mt-2 bg-white drop-shadow-xl rounded-2xl mb-4'>
 
             <div className='w-full flex justify-between items-center'>
                 <h1 className='text-xl'>Starred</h1>
