@@ -1,24 +1,27 @@
+import firebase from "firebase/compat/app";
+// Required for side-effects
+import "firebase/firestore";
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 
-import firebase from 'firebase'
 
 const firebaseConfig = {
-
-    apiKey: "AIzaSyDyQXGbugR1vAKKQjpFXvICk__xVUu6acw",
-    authDomain: "drive-38585.firebaseapp.com",
-    projectId: "drive-38585",
-    storageBucket: "drive-38585.appspot.com",
-    messagingSenderId: "909215945697",
-    appId: "1:909215945697:web:1bbf823a759fa14689f8a0",
-    measurementId: "G-QSWXGWX4ZX"
+    apiKey: "AIzaSyCwQ535HK4soV4En3CxcnZMomptIiayU8M",
+    authDomain: "drive-2-react.firebaseapp.com",
+    projectId: "drive-2-react",
+    storageBucket: "drive-2-react.appspot.com",
+    messagingSenderId: "608915190191",
+    appId: "1:608915190191:web:a0cede50ed8e8464607f5a",
+    measurementId: "G-7MG56LEGRX"
 };
 
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const provider = new GoogleAuthProvider();
+const auth = getAuth();
+const storage = getStorage();
 
 
-const firebaseApp = firebase.initializeApp(firebaseConfig)
-
-const auth = firebase.auth()
-const provider = new firebase.auth.GoogleAuthProvider()
-const storage = firebase.storage()
-const db = firebaseApp.firestore()
-
-export { auth, provider, db, storage }
+export { db, provider, auth, storage }

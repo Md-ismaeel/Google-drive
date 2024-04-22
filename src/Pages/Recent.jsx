@@ -5,7 +5,7 @@ import recent from "../assets/empty_state_recents_v4.svg"
 
 const Recent = () => {
 
-  const { fileView } = useContext(UserContext)
+  const { user } = useContext(UserContext)
   return (
     <div className='w-full relative min-h-screen px-10 py-4 mt-2 bg-white drop-shadow-xl rounded-2xl mb-4'>
 
@@ -16,7 +16,7 @@ const Recent = () => {
         </span>
       </div>
 
-      {fileView.length < 0 ? (
+      {user.data?.length < 0 ? (
         <>
 
         </>) : (

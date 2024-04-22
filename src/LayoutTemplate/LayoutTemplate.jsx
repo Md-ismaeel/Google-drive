@@ -3,37 +3,40 @@ import Navbar from '../Components/Navbar'
 import { SideBar } from '../Components/SideBar'
 import { Outlet } from 'react-router-dom'
 import { UserContext } from '../Context/Context'
-import { auth, provider, db } from '../FireBaseConfig/Firebase'
+import { signInWithPopup } from "firebase/auth";
+import { auth, db, provider } from '../FireBaseConfig/Firebase'
+import { doc, getDoc, setDoc } from 'firebase/firestore'
 
 
 const LayoutTemplate = () => {
 
-    const { setFileView, user, setUser } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
 
-    const SignIn = () => {
-        auth.signInWithPopup(provider).then(({ user }) => {
-            setUser(user)
-        })
-            .catch((e) => {
-                console.error('sign in failed', e)
-            })
+
+    const SignIn = async () => {
+        try {
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user.providerData[0];
+
+            const snapshot = await getDoc(doc(db, 'users', user.uid));
+            if (snapshot.exists()) {
+                // console.log("Document data:", snapshot.data());
+                setUser(snapshot.data())
+            } else {
+                // If the user document doesn't exist, create a new document for the user in Firestore
+                const newUserDocRef = doc(db, 'users', user.uid);
+                await setDoc(newUserDocRef, { ...user, data: [] });
+
+                // Set the user state with the new user data
+                setUser({ ...user, data: [] });
+                console.log("New user document created in Firestore.");
+            } // Set the user in your context or state
+        } catch (error) {
+            console.error(error);
+            // Handle error
+        }
     }
 
-    useEffect(() => {
-        const unSubsCribe = db.collection('myFiles').onSnapshot(snapshot => {
-            setFileView(snapshot.docs.map(docs => ({
-                id: docs.id,
-                data: docs.data()
-            }
-            )))
-        })
-
-        return () => unSubsCribe();
-
-    }, [])
-
-
-    // console.log(user);
     return (
         <>
             {user ? (
@@ -59,3 +62,34 @@ const LayoutTemplate = () => {
 }
 
 export default LayoutTemplate;
+
+
+// const handleSubmit = (e) => {
+//     e.preventDefault;
+//     setUploading(true)
+
+//     // storage.ref(`files/${file.name}`).put(file).then(snapshot => {
+//     //     // console.log(snapshot)
+
+//     //     storage.ref('files').child(file.name).getDownloadURL().then(url => {
+//     //         //post image inside the db
+
+//     //         db.collection('myFiles').add({
+//     //             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+//     //             caption: file.name,
+//     //             fileUrl: url,
+//     //             size: snapshot._delegate.bytesTransferred,
+//     //         })
+//     //         console.log(file);
+
+//     //         setUploading(false)
+//     //         setOpen(false)
+//     //         setFile(null)
+//     //     })
+
+//     //     storage.ref('files').child(file.name).getMetadata().then(meta => {
+//     //         console.log(meta.size)
+//     //     })
+
+//     // })
+// }

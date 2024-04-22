@@ -1,6 +1,5 @@
 import React from 'react'
 import { MdInsertDriveFile } from "react-icons/md";
-import firebase from 'firebase';
 
 export const FilesView = ({ item }) => {
     // const { caption, fileUrl, size } = item;
@@ -9,7 +8,8 @@ export const FilesView = ({ item }) => {
         <div className='w-[150px] min-h-[100px] mt-4 flex flex-col justify-start items-center border'>
 
             <p className='w-[100%] flex justify-center items-center mt-3 mb-3 text-gray-500'><MdInsertDriveFile className='text-5xl w-[100%' /></p>
-            <p className='w-[100%] flex justify-center items-center border-t text-sm py-1 bg-gray-200 '>{item.data.caption?.length >= 15 ? item.data.caption.slice(0, 15) + "..." : item.data.caption}</p>
+            <a href={item.imgUrl} target='_blank' className='w-[100%] flex justify-center items-center border-t text-sm py-1 bg-gray-200 '>
+                <span className='hover:underline hover:text-blue-500 flex justify-center items-center w-full'>{item.name?.length >= 15 ? item.name.slice(0, 15) + "..." : item.name}</span></a>
 
         </div>
     )

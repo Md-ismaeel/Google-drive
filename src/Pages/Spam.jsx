@@ -4,7 +4,7 @@ import { UserContext } from '../Context/Context'
 import spam from "../assets/empty_state_spam.svg"
 
 const Spam = () => {
-    const { fileView } = useContext(UserContext)
+    const { user } = useContext(UserContext)
     return (
         <div className='w-full relative min-h-screen px-10 py-4 mt-2 bg-white drop-shadow-xl rounded-2xl mb-4'>
 
@@ -16,7 +16,7 @@ const Spam = () => {
             </div>
 
 
-            {fileView.length < 0 ? (
+            {user.data?.length < 0 ? (
                 <>
 
                 </>) : (

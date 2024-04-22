@@ -9,7 +9,7 @@ import home from "../assets/empty_state_home.svg"
 
 export const Home = () => {
 
-    const { fileView } = useContext(UserContext);
+    const { user } = useContext(UserContext);
 
     return (
 
@@ -23,15 +23,15 @@ export const Home = () => {
             </div>
 
 
-            {fileView.length > 0 ? (
+            {user.data?.length > 0 ? (
                 <>
                     <div className='scroll-bar w-full h-[150px] flex justify-start items-center gap-4 flex-wrap mb-10 overflow-y-scroll'>
-                        {fileView && fileView.map((item, i) => (
-                            <FilesView key={item.id} item={item} />
+                        {user.data && user.data.map((item, index) => (
+                            <FilesView key={index} item={item} />
                         ))}
                     </div>
 
-                    <div className='w-[100%] flex flex-col justify-start items-center overflow-y-auto'>
+                    {/* <div className='w-[100%] flex flex-col justify-start items-center overflow-y-auto'>
 
                         {fileView.length > 0 ? (
                             <>
@@ -51,7 +51,7 @@ export const Home = () => {
                             </>
                         ) : ''}
 
-                    </div>
+                    </div> */}
                 </>
             ) : (
 

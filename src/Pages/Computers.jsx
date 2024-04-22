@@ -4,7 +4,7 @@ import { UserContext } from '../Context/Context'
 import computer from "../assets/empty_state_computers_v4.svg"
 
 const Computers = () => {
-  const { fileView } = useContext(UserContext)
+  const { user } = useContext(UserContext)
 
   return (
     <div className='w-full relative min-h-screen px-10 py-4 mt-2 bg-white drop-shadow-xl rounded-2xl mb-4'>
@@ -16,7 +16,7 @@ const Computers = () => {
         </span>
       </div>
 
-      {fileView.length < 0 ? (
+      {user.data?.length  < 0 ? (
         <>
 
         </>) : (

@@ -13,23 +13,33 @@ import { IoMdLogOut } from "react-icons/io";
 
 const Navbar = () => {
 
-    const { fileView, setFileView, user, setUser, showProfile, setShowProfile } = useContext(UserContext)
-    const searchRef = useRef(null);
+    const { user, setUser } = useContext(UserContext)
+    const [showProfile, setShowProfile] = useState(false)
+    const [inputVal, setInputVal] = useState('')
+    // const searchRef = useRef(null);
     const profileRef = useRef(null)
     const navigator = useNavigate()
 
+    console.log(user.data);
 
-    const HandleFilter = () => {
-        let searchInput = searchRef.current.value.toLowerCase();
+    const handleFilter = (e) => {
+        const searchInput = e.target.value.toLowerCase();
 
-        const filteredData = fileView.filter((e) => {
-            return (e.data.caption.includes(searchInput))
-        })
-        setFileView(filteredData)
-    }
+        if (searchInput === '') {
+            setUser({ ...user });
+            setInputVal('')
+        } else {
+            const filteredData = user.data.filter((item) =>
+                item.name.toLowerCase().includes(searchInput)
+            );
+            setUser({ ...user, data: filteredData });
+            setInputVal(searchInput);
+        }
+    };
+    // setUser({ ...user })
 
     const handleLogOut = () => {
-        setUser(user => !user)
+        setUser(prev => !prev, {})
         navigator('/')
     }
 
@@ -65,8 +75,9 @@ const Navbar = () => {
             <div className='w-[52%] relative px-6'>
 
                 <input type='text'
-                    ref={searchRef}
-                    onChange={HandleFilter}
+                    // ref={searchRef}
+                    value={inputVal}
+                    onChange={handleFilter}
                     placeholder='Search in Drive'
                     className='w-full text-lg text-black bg-slate-200 py-[10px] px-16 rounded-full outline-none focus:outline-none focus:border focus:bg-white focus:drop-shadow-xl'
                 />
@@ -85,7 +96,7 @@ const Navbar = () => {
 
                 <span onClick={handleOpen} className='text-4xl '>
                     {user && user.photoURL ? (
-                        <img src={user.photoURL} alt="User Profile" height={'50px'} width={'40px'} className='rounded-full relative text-xs bg-center' />
+                        <img src={user.photoURL} height={'50px'} width={'40px'} className='rounded-full relative text-xs bg-center' />
                     ) : (
                         <MdAccountCircle className='text-gray-400' />
                     )}

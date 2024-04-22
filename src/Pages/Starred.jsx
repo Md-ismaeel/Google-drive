@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useContext } from 'react'
 import { UserContext } from '../Context/Context'
 import starred from "../assets/empty_state_starred_files_v3.svg"
 
 const Starred = () => {
-    const { fileView } = useContext(UserContext)
+    const { user } = useContext(UserContext)
+    const [star, setStar] = useState();
     return (
         <div className='w-full relative min-h-screen px-10 py-4 mt-2 bg-white drop-shadow-xl rounded-2xl mb-4'>
 
@@ -15,7 +16,7 @@ const Starred = () => {
                 </span>
             </div>
 
-            {fileView.length < 0 ? (
+            {user.data?.length < 0 ? (
                 <>
 
                 </>) : (
