@@ -3,7 +3,10 @@ import { UserContext } from "./Context";
 
 export const UserProvider = (props) => {
 
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(null);
+    const [openModel, setOpenModel] = useState(false);
+    const [starred, setStarred] = useState([]);
+
 
 
     useEffect(() => {
@@ -20,7 +23,7 @@ export const UserProvider = (props) => {
 
 
     return (
-        <UserContext.Provider value={{ user, setUser }}>
+        <UserContext.Provider value={{ user, setUser, starred, setStarred, openModel, setOpenModel }}>
             {props.children}
         </UserContext.Provider>
     );

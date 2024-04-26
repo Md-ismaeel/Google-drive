@@ -6,6 +6,7 @@ import { UserContext } from '../Context/Context'
 import { signInWithPopup } from "firebase/auth";
 import { auth, db, provider } from '../FireBaseConfig/Firebase'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
+import googlePng from "../assets/google.png"
 
 
 const LayoutTemplate = () => {
@@ -17,6 +18,7 @@ const LayoutTemplate = () => {
         try {
             const result = await signInWithPopup(auth, provider);
             const user = result.user.providerData[0];
+            // console.log(result.user.providerData[0]);
 
             const snapshot = await getDoc(doc(db, 'users', user.uid));
             if (snapshot.exists()) {
@@ -39,7 +41,7 @@ const LayoutTemplate = () => {
 
     return (
         <>
-            {user ? (
+            {user !== null ? (
                 <div className='w-full'>
                     <Navbar />
                     <div className='w-[100%] flex'>
@@ -53,8 +55,10 @@ const LayoutTemplate = () => {
                 </div>
             ) : (
                 <div className='w-full min-h-screen flex flex-col justify-center items-center bg-slate-400 gap-4'>
-                    <img src={'https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Drive_logo_%282014-2020%29.svg'} height={'300px'} width={'400px'} className='' />
-                    <button onClick={SignIn} className='w-[400px] h-[50px] bg-blue-300 text-white text-xl rounded-md'>Login to Google Drive </button>
+                    <img src={'https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Drive_logo_%282014-2020%29.svg'} height={'2500px'} width={'400px'} className='' />
+                    <button onClick={SignIn} className='w-[300px] h-[50px] bg-white text-xl rounded-md flex justify-center items-center gap-3'>
+                        <img src={googlePng} height={'10px'} width={'30px'} /><span className=''>Login with Google </span>
+                    </button>
                 </div>
             )}
         </>
@@ -62,34 +66,3 @@ const LayoutTemplate = () => {
 }
 
 export default LayoutTemplate;
-
-
-// const handleSubmit = (e) => {
-//     e.preventDefault;
-//     setUploading(true)
-
-//     // storage.ref(`files/${file.name}`).put(file).then(snapshot => {
-//     //     // console.log(snapshot)
-
-//     //     storage.ref('files').child(file.name).getDownloadURL().then(url => {
-//     //         //post image inside the db
-
-//     //         db.collection('myFiles').add({
-//     //             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-//     //             caption: file.name,
-//     //             fileUrl: url,
-//     //             size: snapshot._delegate.bytesTransferred,
-//     //         })
-//     //         console.log(file);
-
-//     //         setUploading(false)
-//     //         setOpen(false)
-//     //         setFile(null)
-//     //     })
-
-//     //     storage.ref('files').child(file.name).getMetadata().then(meta => {
-//     //         console.log(meta.size)
-//     //     })
-
-//     // })
-// }

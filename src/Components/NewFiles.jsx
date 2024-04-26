@@ -9,19 +9,60 @@ import { setDoc, doc } from "firebase/firestore";
 
 export const NewFiles = () => {
 
-    const { user, setUser } = useContext(UserContext);
-    const [open, setOpen] = useState(false);
+    const { user, setUser, openModel, setOpenModel } = useContext(UserContext);
+
     const [file, setFile] = useState(null);
     const [uploading, setUploading] = useState(false);
     const sidebarRef = useRef(null);
 
     const handleClose = () => {
-        setOpen(false);
+        setOpenModel(false);
+        // document.body.style.backgroundColor = `initial`
     };
 
     const handleOpen = () => {
-        setOpen(true);
+        setOpenModel(true);
+        // document.body.style.backgroundColor = `rgb(0,0,0,0.5)`
     };
+
+    const handleOnchange = (e) => {
+        if (e.target.files[0]) {
+            // console.log(e.target.files[0]);
+            setFile(e.target.files[0])
+        }
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!file) return;
+        setUploading(true)
+
+        try {
+            const img = ref(storage, `image${v4()}`)
+            const data = await uploadBytes(img, file)
+            const imgUrl = await getDownloadURL(data.ref)
+            // console.log(data, imgUrl);
+
+            const fileData = {
+                id: v4(),
+                timestamp: { seconds: Math.floor(Date.now() / 1000) },
+                name: file.name,
+                imgUrl,
+                size: file.size,
+            };
+
+            await setDoc(doc(db, "users", user.uid), { ...user, data: [...user.data, fileData] })
+            setUser({ ...user, data: [...user.data, fileData] })
+            setUploading(false)
+            setOpenModel(false)
+
+        } catch (error) {
+            console.error('Error uploading file:', error);
+            setUploading(false)
+            setOpenModel(false)
+        }
+    }
+
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -34,60 +75,23 @@ export const NewFiles = () => {
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
-    const handleOnchange = (e) => {
-        if (e.target.files[0]) {
-            console.log(e.target.files[0]);
-            setFile(e.target.files[0])
-        }
-    }
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (!file) return;
-        setUploading(true)
-
-        try {
-            const img = ref(storage, `img/${v4()}`)
-            const data = await uploadBytes(img, file)
-            const imgUrl = await getDownloadURL(data.ref)
-            console.log(data, imgUrl);
-
-            const fileData = {
-                id: v4(),
-                timestamp: { seconds: Math.floor(Date.now() / 1000) },
-                name: file.name,
-                imgUrl,
-                size: file.size,
-            };
-
-            setUser({ ...user, data: [...user.data, fileData] })
-            await setDoc(doc(db, "users", user.uid), { ...user, data: [...user.data, fileData] })
-            setUploading(false)
-            setOpen(false)
-
-        } catch (error) {
-            console.error('Error uploading file:', error);
-            setUploading(false)
-            setOpen(false)
-        }
-    }
 
     return (
-        <div className='w-full mt-2 px-2'>
-            {open ?
-                <div ref={sidebarRef} className='side-bar flex flex-col justify-center items-center gap-4 absolute min-h-[100px] w-[400px] bg-white drop-shadow-2xl py-4 border-2 top-52 left-[500px] z-30'>
-                    <h2 className='w-full flex justify-center items-center text-lg border-b-2'>Select files from your Device</h2>
+        <div className={`w-full mt-2 px-2 `}>
+            {openModel ?
+                <div ref={sidebarRef} className='side-bar flex flex-col justify-between items-center gap-4 absolute h-[200px] w-[400px drop-shadow-2xl py-8 px-8 border-2 top-52 left-[500px] z-30 bg-white'>
+                    <h2 className='w-full flex justify-center items-center text-xl border px-2 py-1'>Select files from your Device</h2>
 
                     {!uploading ? (
 
                         <div className='w-full flex flex-col justify-center items-center'>
 
                             <input type='file' onChange={handleOnchange} className='w-full py-2 px-6' />
-                            <button type='submit' onClick={handleSubmit} className='w-[90%] py-1 px-6 text-white bg-blue-600'>Submit</button>
+                            <button type='submit' onClick={handleSubmit} className='w-[90%] py-1 px-6 text-white bg-blue-600 mt-2 rounded-md'>Submit</button>
 
                         </div>
 
-                    ) : (<button className='w-[90%] text-white text-lg bg-green-500 py-1 px-16'>Uploading....</button>)}
+                    ) : (<button className='w-[100%] text-white text-lg bg-green-500 py-1 px-6 rounded-md'>Uploading....</button>)}
                 </div>
                 : ''
             }

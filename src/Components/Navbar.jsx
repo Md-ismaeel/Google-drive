@@ -9,6 +9,8 @@ import { IoApps } from "react-icons/io5";
 import { MdAccountCircle } from "react-icons/md";
 import { UserContext } from '../Context/Context';
 import { IoMdLogOut } from "react-icons/io";
+import { auth } from '../FireBaseConfig/Firebase'
+import { signOut } from 'firebase/auth';
 
 
 const Navbar = () => {
@@ -16,11 +18,10 @@ const Navbar = () => {
     const { user, setUser } = useContext(UserContext)
     const [showProfile, setShowProfile] = useState(false)
     const [inputVal, setInputVal] = useState('')
-    // const searchRef = useRef(null);
     const profileRef = useRef(null)
     const navigator = useNavigate()
 
-    console.log(user.data);
+    // console.log(user.data);
 
     const handleFilter = (e) => {
         const searchInput = e.target.value.toLowerCase();
@@ -36,10 +37,11 @@ const Navbar = () => {
             setInputVal(searchInput);
         }
     };
-    // setUser({ ...user })
 
-    const handleLogOut = () => {
-        setUser(prev => !prev, {})
+
+    const signOutFun = async () => {
+        await auth.signOut();
+        setUser(null)
         navigator('/')
     }
 
@@ -89,14 +91,13 @@ const Navbar = () => {
 
             <ul className='w-[18%] flex text-2xl justify-between items-center'>
 
-                <span><MdOutlineOfflinePin className='cursor-pointer' /></span>
-                <span><MdOutlineContactSupport className='cursor-pointer' /></span>
+                <span><MdOutlineOfflinePin className='cursor-pointer' /></span>                <span><MdOutlineContactSupport className='cursor-pointer' /></span>
                 <span><IoSettingsOutline className='cursor-pointer' /></span>
                 <span><IoApps className='cursor-pointer' /></span>
 
                 <span onClick={handleOpen} className='text-4xl '>
-                    {user && user.photoURL ? (
-                        <img src={user.photoURL} height={'50px'} width={'40px'} className='rounded-full relative text-xs bg-center' />
+                    {user && user?.photoURL ? (
+                        <img src={user?.photoURL} height={'50px'} width={'40px'} className='rounded-full relative text-xs bg-center' />
                     ) : (
                         <MdAccountCircle className='text-gray-400' />
                     )}
@@ -105,8 +106,8 @@ const Navbar = () => {
 
                 {showProfile ? (
                     <div ref={profileRef} className='absolute w-[150px] flex flex-col justify-center items-center top-14 right-10 text-base bg-white drop-shadow-2xl z-10 py-2  rounded-lg'>
-                        <p className='w-full text-center py-1 text-gray-500'>My Account</p>
-                        <p onClick={handleLogOut} className='w-full flex justify-center items-center gap-2 text-center cursor-pointer py-2'>LogOut<IoMdLogOut className='text-red-500' /></p>
+                        <p className='w-full text-center py-1 text-gray-500'>{user?.displayName && <span>{user?.displayName}</span>}</p>
+                        <p onClick={signOutFun} className='w-full flex justify-center items-center gap-2 text-center cursor-pointer py-2'>LogOut<IoMdLogOut className='text-red-500' /></p>
                     </div>)
                     : ''}
             </ul>

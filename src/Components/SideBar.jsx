@@ -15,7 +15,7 @@ export const SideBar = () => {
         <div className='w-full mt-2 px-6 min-h-screen mb-4'>
             <NewFiles />
 
-            <div className='w-full flex flex-col gap-2'>
+            <div className='w-full flex flex-col gap-1'>
 
                 <NavLink to={'/'} className={`${isActive === "/" ? 'bg-blue-100' : 'hover:bg-slate-200'} flex justify-start items-center gap-4 cursor-pointer px-4 py-1 rounded-full`}>
                     <svg className="c-qd  text-sm" height="24" width="24" viewBox="0 0 24 24" fill="#000000" focusable="false"><g><path d="M0,0h24v24H0V0z" fill="none"></path></g><g><polygon points="12,3 4,9 4,21 10,21 10,14 14,14 14,21 20,21 20,9"></polygon></g></svg>
@@ -32,15 +32,13 @@ export const SideBar = () => {
                     <span className='flex text-sm'>Computers</span>
                 </NavLink>
 
-                <NavLink to={'/starred'} className={`${isActive === "/starred" ? 'bg-blue-100' : 'hover:bg-slate-200'} flex justify-start items-center gap-4 cursor-pointer px-4 py-1 rounded-full`}>
+                <NavLink to={'/starred'} className={`mt-2 ${isActive === "/starred" ? 'bg-blue-100' : 'hover:bg-slate-200'} flex justify-start items-center gap-4 cursor-pointer px-4 py-1 rounded-full`}>
                     <svg className=" c-qd" width="24px" height="24px" viewBox="0 0 24 24" focusable="false" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"></path><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg>
                     <span className='flex text-sm opacity-80'>Starred</span>
                 </NavLink>
-
-                <span className='mt-[-10px] ml-16 text-sm'>Star items to display here</span>
             </div>
 
-            <div className='w-full mt-2 flex flex-col gap-2'>
+            <div className='w-full flex flex-col gap-1'>
 
                 <NavLink to={'/shareWidthMe'} className={`${isActive === "/shareWidthMe" ? 'bg-blue-100' : 'hover:bg-slate-200'} flex justify-start items-center gap-4 cursor-pointer px-4 py-1 rounded-full`}>
                     <svg className=" c-qd text-sm" width="24px" height="24px" viewBox="0 0 24 24" fill="#000000" focusable="false"><g><rect fill="none" height="24" width="24"></rect></g><g><g><path d="M15,8c0-1.42-0.5-2.73-1.33-3.76C14.09,4.1,14.53,4,15,4c2.21,0,4,1.79,4,4s-1.79,4-4,4c-0.43,0-0.84-0.09-1.23-0.21 c-0.03-0.01-0.06-0.02-0.1-0.03C14.5,10.73,15,9.42,15,8z M16.66,13.13C18.03,14.06,19,15.32,19,17v3h4v-3 C23,14.82,19.42,13.53,16.66,13.13z M9,4c2.21,0,4,1.79,4,4s-1.79,4-4,4s-4-1.79-4-4S6.79,4,9,4z M9,13c2.67,0,8,1.34,8,4v3H1v-3 C1,14.34,6.33,13,9,13z"></path></g></g></svg>
@@ -52,7 +50,7 @@ export const SideBar = () => {
                     <span className='flex text-sm opacity-80'>Recent</span>
                 </NavLink>
 
-                <NavLink to={'/spam'} className={`${isActive === "/spam" ? 'bg-blue-100' : 'hover:bg-slate-200'} flex justify-start items-center gap-4 cursor-pointer px-4 py-1 rounded-full`}>
+                <NavLink to={'/spam'} className={`mt-2 ${isActive === "/spam" ? 'bg-blue-100' : 'hover:bg-slate-200'} flex justify-start items-center gap-4 cursor-pointer px-4 py-1 rounded-full`}>
                     <svg className="c-qd  text-sm" width="24px" height="24px" viewBox="0 0 24 24" fill="#000000" focusable="false"><g><rect fill="none" height="24" width="24"></rect></g><g><path d="M15.73,3H8.27L3,8.27v7.46L8.27,21h7.46L21,15.73V8.27L15.73,3z M12,17c-0.55,0-1-0.45-1-1s0.45-1,1-1s1,0.45,1,1 S12.55,17,12,17z M13,13h-2V7h2V13z"></path></g></svg>
                     <span className='flex text-sm opacity-80'>Spam</span>
                 </NavLink>
