@@ -35,7 +35,7 @@ This project aims to create a Google Drive clone application for Redmi devices, 
 
 ### Implemented Ui as similar Google-Drive
 
-![Alt text](./src/assets/redmiMd/addFile.png)
+![Alt text](./src/assets/redmiMd/addFiles.png)
 
 ### When User will click on add Button then model will open and add any data like video audio image and that will store ion file base
 
