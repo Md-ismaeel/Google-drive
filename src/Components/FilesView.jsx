@@ -2,7 +2,6 @@ import React from 'react'
 import { MdInsertDriveFile } from "react-icons/md";
 
 export const FilesView = ({ item }) => {
-    // const { caption, fileUrl, size } = item;
 
     return (
         <div className='w-[150px] min-h-[100px] mt-4 flex flex-col justify-start items-center border'>

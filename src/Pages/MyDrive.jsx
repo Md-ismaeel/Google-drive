@@ -9,7 +9,7 @@ export const MyDrive = () => {
     const { user } = useContext(UserContext)
 
     return (
-        <div className='w-full relative h-screen px-10 py-4 mt-2 bg-white drop-shadow-xl rounded-2xl mb-4'>
+        <div className='w-full relative min-h-screen px-10 py-4 mt-2 bg-white drop-shadow-xl rounded-2xl mb-4'>
 
             <div className='w-full flex justify-between items-center mb-10'>
                 <h1 className='text-xl'>My Drive</h1>
@@ -21,11 +21,11 @@ export const MyDrive = () => {
             {user?.data?.length > 0 ? (
                 <>
                     <div className='w-[100%] flex flex-col justify-start items-center overflow-y-auto'>
-                        <div className='w-full flex justify-start items-center border-b px-2 py-2'>
-                            <p className='font-semibold w-[35%] flex justify-start items-center gap-1'>Name<FaArrowDown /></p>
-                            <p className='font-semibold w-[20%] text-center'>Owner</p>
-                            <p className='font-semibold w-[25%] text-center'>Last Modified</p>
-                            <p className='font-semibold w-[15%] text-center'>File Size</p>
+                        <div className='option-sec w-full flex justify-start items-center border-b px-2 py-2'>
+                            <p className='option-sec-child font-semibold w-[35%] flex justify-start items-center gap-1'>Name<FaArrowDown /></p>
+                            <p className='option-sec-child font-semibold w-[20%] text-center'>Owner</p>
+                            <p className='option-sec-child font-semibold w-[25%] text-center'>Last Modified</p>
+                            <p className='option-sec-child font-semibold w-[15%] text-center'>File Size</p>
                             <p className='font-semibold w-[5%] text-center'><MdMoreVert /></p>
                         </div>
 

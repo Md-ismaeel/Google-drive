@@ -15,6 +15,7 @@ const LayoutTemplate = () => {
 
 
     const SignIn = async () => {
+
         try {
             const result = await signInWithPopup(auth, provider);
             const user = result.user.providerData[0];
@@ -44,19 +45,19 @@ const LayoutTemplate = () => {
             {user !== null ? (
                 <div className='w-full'>
                     <Navbar />
-                    <div className='w-[100%] flex'>
-                        <div className='w-[22%]'>
+                    <div className='mai-div w-[100%] flex'>
+                        <div className='side w-[22%]'>
                             <SideBar />
                         </div>
-                        <div className='w-[75%]'>
+                        <div className='outlet w-[75%]'>
                             <Outlet />
                         </div>
                     </div>
                 </div>
             ) : (
-                <div className='w-full min-h-screen flex flex-col justify-center items-center bg-slate-400 gap-4'>
-                    <img src={'https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Drive_logo_%282014-2020%29.svg'} height={'2500px'} width={'400px'} className='' />
-                    <button onClick={SignIn} className='w-[300px] h-[50px] bg-white text-xl rounded-md flex justify-center items-center gap-3'>
+                <div className='w-full h-screen flex flex-col justify-center items-center bg-slate-400 gap-4'>
+                    <img src={'https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Drive_logo_%282014-2020%29.svg'} className='logo-img h-[250px] w-[400px]' />
+                    <button onClick={SignIn} className='button-main-page w-[300px] h-[50px] bg-white text-xl rounded-md flex justify-center items-center gap-3 mb-6'>
                         <img src={googlePng} height={'10px'} width={'30px'} /><span className=''>Login with Google </span>
                     </button>
                 </div>

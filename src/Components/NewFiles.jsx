@@ -6,7 +6,6 @@ import { db, storage } from '../FireBaseConfig/Firebase';
 import { v4 } from 'uuid';
 import { setDoc, doc } from "firebase/firestore";
 
-
 export const NewFiles = () => {
 
     const { user, setUser, openModel, setOpenModel } = useContext(UserContext);
@@ -63,17 +62,16 @@ export const NewFiles = () => {
         }
     }
 
-
     useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-                handleClose();
+        const handleClickOutside = (e) => {
+            if (sidebarRef.current && !sidebarRef.current.contains(e.target)) {
+                handleClose()
             }
-        };
-        document.addEventListener('mousedown', handleClickOutside);
+        }
+        document.addEventListener('mousedown', handleClickOutside)
 
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, []);
+        return () => document.removeEventListener('mousedown', handleClickOutside)
+    }, [])
 
 
     return (

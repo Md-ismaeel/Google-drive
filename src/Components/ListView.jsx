@@ -66,11 +66,10 @@ export const ListView = ({ item }) => {
 
     return (
         <>
-            <div key={item.id} className='w-full flex justify-between items-center border-b px-2 py-2 text-sm hover:bg-blue-200'>
+            <div key={item.id} className='li-view w-full flex justify-between items-center border-b px-2 py-2 text-sm hover:bg-blue-200'>
                 <a href={item.imgUrl} target='_blank' className='w-[35%] flex items-center gap-2'><MdInsertDriveFile className='text-2xl' /><span className='hover:underline hover:text-blue-500'>{item.name?.length >= 30 ? item.name.slice(0, 30) + "..." : item.name}</span></a>
 
                 <p className='w-[20%] flex justify-center items-center gap-2'>me<MdAccountCircle className='text-lg text-gray-400' /></p>
-                {/* <p className='w-[25%] text-center'>{item.timestamp()}</p> */}
                 <p className='w-[25%] text-center'>{new Date(item.timestamp?.seconds * 1000).toUTCString()}</p>
                 <p className='w-[15%] text-center'>{ConvertingToBytes(item.size)}</p>
 
@@ -82,7 +81,6 @@ export const ListView = ({ item }) => {
                             <button onClick={() => handleStarred(item.id)} className='w-[80%] h-[30px] text-sm rounded-md hover:bg-slate-300 hover:text-white py-2 flex justify-center items-center'> {starred.some((e) => e.id === item.id) ? "Remove" : "Add Starred"}</button>
                         </div>
                     ) : ''}
-
                 </div>
 
             </div>

@@ -13,7 +13,7 @@ export const Home = () => {
 
     return (
 
-        <div className='w-full relative h-screen px-10 py-4 mt-2 bg-white drop-shadow-xl rounded-2xl mb-4'>
+        <div className='w-full relative min-h-screen px-10 py-4 mt-2 bg-white drop-shadow-xl rounded-2xl mb-4'>
 
             <div className='w-full flex justify-between items-center'>
                 <h1 className='text-xl'>Welcome to Drive</h1>
@@ -25,7 +25,7 @@ export const Home = () => {
 
             {user?.data?.length > 0 ? (
                 <>
-                    <div className='scroll-bar w-full h-[420px] flex justify-start items-start gap-4 flex-wrap mb-10 overflow-y-scroll'>
+                    <div className='fileView scroll-bar w-full min-h-[420px] flex justify-start items-start gap-4 flex-wrap mb-10 overflow-y-scroll'>
                         {user.data && user.data.map((item, index) => (
                             <FilesView key={index} item={item} />
                         ))}
